@@ -85,13 +85,21 @@ Hero* ui::createhero()
 		string** clothes = myparser.pars(clothpath);
 		int celected;
 		int num;
+		bool flag;
 		do {
 			num = 1;
 			system("cls");
 			cout << "\tselect clothes, 0 - to confirm\n";
 			for (int i = 1; i < myparser.getlastrows(); i++) {
-				if ((clothes[i][1] == "a" || (clothes[i][1] == gen)) && (clothes[i][2] == "0" && HeroToCreate->head0) || (clothes[i][2] == "1" && HeroToCreate->up1) || (clothes[i][2] == "2" && HeroToCreate->up2) || (clothes[i][2] == "3" && HeroToCreate->doun3) || (clothes[i][2] == "4" && HeroToCreate->doun4)) {
-					cout << endl << num++ << '\t' << clothes[i][0];
+				if (clothes[i][1] == "a" || (clothes[i][1] == gen)) {
+					string* bodyparts = myparser.pars(clothes[i][2],',');
+					flag = 1;
+					for (int i = 0; i < myparser.getCountLastSplitter(); i++) {
+						cout << bodyparts[i];
+						if (!(bodyparts[i] == "0" && HeroToCreate->head0|| bodyparts[i] == "1" && HeroToCreate->up1 || bodyparts[i] == "2" && HeroToCreate->up2|| bodyparts[i] == "3" && HeroToCreate->doun3 || bodyparts[i] == "4" && HeroToCreate->doun4))flag = 0;
+					}
+					if(flag)cout << endl << num++ << '\t' << clothes[i][0];
+					delete[]bodyparts;
 				}
 			}
 			cout << endl;
