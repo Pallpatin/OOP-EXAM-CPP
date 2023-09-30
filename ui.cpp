@@ -54,6 +54,55 @@ Hero* ui::createhero()
 		myparser.deleateString(hairs);
 	}
 
+	system("cls");
+	cout << "select shoes :";
+	{
+		int num = 1;
+		string** shoes = myparser.pars(shoespath);
+		for (int i = 0; i < myparser.getlastrows(); i++) {
+			if (shoes[i][1] == "a" || (shoes[i][1] == gen)) {
+				cout << endl << num++ << '\t' << shoes[i][0];
+			}
+		}
+		cout << endl;
+		int selected;
+		do {
+			cin >> selected;
+		} while (selected <= 0 || selected > num);
+		for (int i = 0; i < myparser.getlastrows(); i++) {
+			if (shoes[i][1] == "a" || (shoes[i][1] == gen)) {
+				selected--;
+				if (!selected) {
+					HeroToCreate->shoes = shoes[i][2];
+					break;
+				}
+			}
+		}
+		myparser.deleateString(shoes);
+	}
+
+	{
+		string** clothes = myparser.pars(clothpath);
+		int celected;
+		int num;
+		do {
+			num = 1;
+			system("cls");
+			cout << "\tselect clothes, 0 - to confirm\n";
+			for (int i = 1; i < myparser.getlastrows(); i++) {
+				if ((clothes[i][1] == "a" || (clothes[i][1] == gen)) && (clothes[i][2] == "0" && HeroToCreate->head0) || (clothes[i][2] == "1" && HeroToCreate->up1) || (clothes[i][2] == "2" && HeroToCreate->up2) || (clothes[i][2] == "3" && HeroToCreate->doun3) || (clothes[i][2] == "4" && HeroToCreate->doun4)) {
+					cout << endl << num++ << '\t' << clothes[i][0];
+				}
+			}
+			cout << endl;
+			cin >> celected;
+			
+		} while (celected < 0 || celected>num);
+
+
+		myparser.deleateString(clothes);
+	}
+
 
 
 	return HeroToCreate;

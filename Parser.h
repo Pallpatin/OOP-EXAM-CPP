@@ -10,5 +10,6 @@ public:
 	string** pars(string path);
 
 	void deleateString(string**& str);
+	
 };
 
