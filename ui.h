@@ -10,7 +10,6 @@ class ui
 	std::string torsespath = "torses.csv";
 	Hero* HeroToCreate = nullptr;
 public:
-	
 	Hero* createhero();
 };
 
